@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue 기능 테스트</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="asset/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="app-7">
+            <h2>{{ title }}</h2>
+            <button v-on:click="datainsert()">버튼</button>
+            <ol>
+                <todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+            </ol>
+
+        </div>
+    </div>
+
+
+    <script>
+        // 랜덤 번호 생성 6개
+        function create_number() {
+            let arr = [];
+            for (let i = 0; i < 6; i++) {
+                arr.push(Math.floor(Math.random() * 45) + 1);
+                for (let c = 0; c < i; c++) {
+                    if (arr[i] === arr[c]) {
+                        arr.pop();
+                        i--;
+                    }
+                }
+            }
+            return arr;
+        }
+
+        Vue.component('todo-item', {
+            props: ['todo'],
+            template: '<li>{{ todo.text }}</li>'
+        })
+        var app7 = new Vue({
+            el: '#app-7',
+            data: {
+                groceryList: [],
+                x: 4,
+                title: '로또 번호 생성기'
+            },
+            methods: {
+                datainsert() {
+                    // this.groceryList[3] = { id: 4, text: 'dd' }
+                    this.groceryList.push({ id: this.x, text: create_number() });
+                    this.x++;
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

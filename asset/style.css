@@ -1,0 +1,18 @@
+.img_list{
+    width: 100%;
+}
+
+.img_list img{
+    width: 400px;
+    cursor: pointer;
+}
+.container{
+    width: 800px;
+    margin: 0 auto;
+}
+#app{
+    text-align: center;
+}
+#app-7{
+    text-align: center;
+}

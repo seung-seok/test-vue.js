@@ -7,43 +7,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>test-vue.js</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="asset/style.css">
 </head>
 
 <body>
-    <div id="app">
-        <div v-text="message"></div>
-        <input type="text" v-model="message">
+    <div class="container">
+        <div id="app">
+            <div v-text="message"></div>
 
-        <div>
-            <ol>
-                <li v-for="todo in todos">
-                    {{todo.text}}
-                </li>
-            </ol>
+            <button v-text="x" v-on:click="up()"></button>
+            <ul>
+                <it-component v-for="num in nums">
+                </it-component>
+            </ul>
+
         </div>
-
-        <button v-text="x" v-on:click="up()"></button>
-
     </div>
 
+
     <script>
+        Vue.component('it-component', {
+            template: '<li>numbers</li>'
+        });
+
         var app = new Vue({
             el: '#app',
             data: {
-                message: 'Hello Vue!' + new Date(),
-                x: 1,
-                todos: [
-                    { text: 'Learn JavaScript' },
-                    { text: 'Learn Vue' },
-                    { text: 'Build something awesome' }
+                message: '로또 당첨 번호 ',
+                x: '당첨 번호 생성',
+                nums: [
+                    { text: 'numbers' }
                 ]
             },
             methods: {
                 up: function () {
-                    this.x++;
+                    create_number();
+                },
+                add: function () {
+                    this.nums.push('num');
                 }
             }
         })
+
+        function create_number() {
+            let arr = [];
+            for (let i = 0; i < 6; i++) {
+                arr.push(Math.floor(Math.random() * 45) + 1);
+                for (let c = 0; c < i; c++) {
+                    if (arr[i] === arr[c]) {
+                        arr.pop();
+                        i--;
+                    }
+                }
+            }
+            console.log(arr);
+            return this.nums = arr;
+        }
+
     </script>
 </body>
 
