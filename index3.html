@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="increase">Click me</button>
+        <div>{{ num }}</div>
+        <div v-if="num === 10">숫자 10 달성</div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                num: 1
+            },
+            methods: {
+                increase() {
+                    this.num++;
+                }
+            },
+
+        })
+    </script>
+</body>
+
+</html>
