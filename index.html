@@ -18,6 +18,7 @@
             <button v-text="x" v-on:click="up()"></button>
             <ul>
                 <it-component v-for="num in nums">
+                {{num.text}}
                 </it-component>
             </ul>
 
@@ -41,29 +42,27 @@
             },
             methods: {
                 up: function () {
-                    create_number();
+                    this.create_number();
                 },
                 add: function () {
                     this.nums.push('num');
+                },
+                create_number: function(){
+                    let arr = [];
+                    for (let i = 0; i < 6; i++) {
+                        arr.push(Math.floor(Math.random() * 45) + 1);
+                        for (let c = 0; c < i; c++) {
+                            if (arr[i] === arr[c]) {
+                                arr.pop();
+                                i--;
+                            }
+                        }
+                    }
+                console.log(arr);
+                return this.nums.push(arr);
                 }
             }
         })
-
-        function create_number() {
-            let arr = [];
-            for (let i = 0; i < 6; i++) {
-                arr.push(Math.floor(Math.random() * 45) + 1);
-                for (let c = 0; c < i; c++) {
-                    if (arr[i] === arr[c]) {
-                        arr.pop();
-                        i--;
-                    }
-                }
-            }
-            console.log(arr);
-            return this.nums = arr;
-        }
-
     </script>
 </body>
 
